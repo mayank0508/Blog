@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* here we will be adding these styles to all the a link in the whole blog */
+@layer base {
+  a {
+    @apply text-pink-500 hover:-translate-x-full;
+  }
+}
