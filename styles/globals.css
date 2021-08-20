@@ -5,6 +5,6 @@
 /* here we will be adding these styles to all the a link in the whole blog */
 @layer base {
   a {
-    @apply text-pink-500 hover:-translate-x-full;
+    @apply text-yellow-400 hover:-translate-x-full;
   }
 }

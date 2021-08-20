@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { format, parseISO, add } from 'date-fns';
 import { blogPosts } from '../../lib/data';
 
 export default function BlogPage({ title, date, content }) {
@@ -9,10 +10,15 @@ export default function BlogPage({ title, date, content }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h5>{date}</h5>
-        <h1>{content}</h1>
+        <div>
+          <h2 className="text-5xl font-bold my-3">{title}</h2>
+          <h5 className="font-style: italic my-3">
+            {format(parseISO(date), 'MMMM do, uuu')}
+          </h5>
+        </div>
+        <h1 className="border-2 p-3 rounded-xl">{content}</h1>
       </main>{' '}
-      <footer>Powered by 💩</footer>
+      <footer className="text-center my-4">Powered by 💩</footer>
     </div>
   );
 }
