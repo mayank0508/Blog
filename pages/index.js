@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { format, parseISO, add } from 'date-fns';
-import { blogPosts } from '../lib/data';
+import { getAllPosts } from '../lib/data';
 
-export default function Home() {
+export default function Home({ posts }) {
   return (
     <div>
       <Head>
@@ -12,14 +12,29 @@ export default function Home() {
       </Head>
 
       <div className="space-y-5">
-
-      {blogPosts.map(item => (
-          < BlogListItem key={item.id} {...item} />
+        {posts.map(item => (
+          <BlogListItem key={item.id} {...item} />
         ))}
       </div>
       <footer className="text-center my-4">Powered by 💩</footer>
     </div>
   );
+}
+
+export async function getStaticProps(context) {
+  const { params } = context;
+  const allPosts = getAllPosts();
+  // const { data, content, id } = allPosts.find(item => item.id === params.id);
+  return {
+    props: {
+      posts: allPosts.map(({ data, content, id }) => ({
+        ...data,
+        date: data.date.toISOString(),
+        content,
+        id
+      }))
+    }
+  };
 }
 
 function BlogListItem({ id, title, date, content }) {
@@ -30,8 +45,10 @@ function BlogListItem({ id, title, date, content }) {
           <a className="text-3xl font-bold">{title}</a>
         </Link>
       </div>
-      <div className="font-style: italic font-semibold ">{format(parseISO(date), 'MMMM do, uuu')}</div>
+      <div className="font-style: italic font-semibold ">
+        {format(parseISO(date), 'MMMM do, uuu')}
+      </div>
       <div>{content}</div>
     </div>
   );
-};
+}
