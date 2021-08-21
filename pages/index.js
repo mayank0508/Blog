@@ -7,7 +7,7 @@ export default function Home({ posts }) {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>My Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -48,7 +48,7 @@ function BlogListItem({ id, title, date, content }) {
       <div className="font-style: italic font-semibold ">
         {format(parseISO(date), 'MMMM do, uuu')}
       </div>
-      <div>{content}</div>
+      <div>{content.substring(0,50)}</div>
     </div>
   );
 }

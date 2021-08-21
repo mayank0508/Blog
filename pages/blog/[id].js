@@ -22,7 +22,7 @@ export default function BlogPage({ title, date, content }) {
           </h5>
         </div>
         <h1 className="prose border-2 p-3 rounded-xl">
-          {<MDXRemote {...content} />}
+          <MDXRemote {...content} />
         </h1>
       </main>{' '}
       <footer className="text-center my-4">Powered by 💩</footer>
